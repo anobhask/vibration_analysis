@@ -111,14 +111,14 @@ def data_2_graph():
     f = np.fft.fft(x)
 
     freq = np.fft.fftfreq(len(x))
-    ax[0].plot(freq, abs(f))
+    ax[0].plot(abs(f))
     ax[0].set_ylabel('Vibration ->')
     ax[0].set_xlabel('frequency in HZ ->')
 
     f1 = np.fft.fft(y)
     
     freq = np.fft.fftfreq(len(y))
-    ax[1].plot(freq, abs(f1)) 
+    ax[1].plot(abs(f1)) 
     ax[1].set_ylabel('Vibration ->')
     ax[1].set_xlabel('frequency in HZ ->')
     #y3 = np.sin(2*np.pi*x)
@@ -127,7 +127,7 @@ def data_2_graph():
     f2 = np.fft.fft(z)
     
     freq = np.fft.fftfreq(len(z))
-    ax[2].plot(freq, abs(f2)) 
+    ax[2].plot(abs(f2)) 
     #ax[1].set_title('Ploted Vibration')
     
     plt.pause(0.001)
@@ -137,14 +137,36 @@ def data_2_graph():
 
 
     ef=0;l=0;E_abs=0;
-    E=[]
+    Ex=[]
     for i in range(0,64):
         for k in range(0,8):
         #E.append(abs(f[i])**2)
             ef=ef+(abs(f[l])**2)
             l=l+1
         print("Values of len nd E:",l,ef)
-        E.append(ef)
+        Ex.append(ef)
+        ef=0
+
+    ef=0;l=0;E_abs=0;
+    Ey=[]
+    for i in range(0,64):
+        for k in range(0,8):
+        #E.append(abs(f[i])**2)
+            ef=ef+(abs(f[l])**2)
+            l=l+1
+        print("Values of len nd E:",l,ef)
+        Ey.append(ef)
+        ef=0
+
+    ef=0;l=0;E_abs=0;
+    Ez=[]
+    for i in range(0,64):
+        for k in range(0,8):
+        #E.append(abs(f[i])**2)
+            ef=ef+(abs(f[l])**2)
+            l=l+1
+        print("Values of len nd E:",l,ef)
+        Ez.append(ef)
         ef=0
         
 
@@ -152,16 +174,28 @@ def data_2_graph():
     #Ef=np.sum(f**2)/512;
     #print ("Ef = %.1f" % ef);
     #print(E)
-    plt.plot( E) 
+
+    fig, ax = plt.subplots(3, 1)
+
+
+
+    ax[0].set_title('Energy spectrum')
+
+    #ax[0].set_pause(0.001)
+    ax[0].set_ylabel('Energy ->')
+    ax[0].set_xlabel('frequency in HZ ->')
+    ax[1].set_ylabel('Energy ->')
+    ax[1].set_xlabel('Tfrequency in HZ ->')
+    ax[2].set_ylabel('Energy ->')
+    ax[2].set_xlabel('frequency in HZ ->')
+    ax[0].plot(Ex, 'r')
+    ax[1].plot(Ey, 'g')
+    ax[2].plot(Ez, 'b')
+    #plt.plot(E) 
     #plt.plot(x, 'r')
     #plt.plot(y, 'g')
     #plt.plot(z, 'b')
 
-    plt.title('Ploted Energy spectrum')
-    
-    plt.pause(0.001)
-    plt.ylabel('Energy ->')
-    plt.xlabel('frequency in HZ ->')
     plt.show()
     
   
